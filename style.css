@@ -22,8 +22,9 @@ h1 {
 }
 
 main {
-  max-width: 800px;
-  margin: auto;
+  max-width: 900px;
+  margin: 100px auto 20px auto;
+  padding: 20px;
 }
 
 
