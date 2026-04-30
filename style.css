@@ -64,12 +64,6 @@ main {
 
 .card button {
   margin-top: auto;
-  padding: 8px 15px;
-  border: none;
-  background: #4CAF50;
-  color: white;
-  border-radius: 8px;
-  cursor: pointer;
 }
 
 .card button:hover {
