@@ -1,62 +1,218 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PetVit</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
 </head>
-
- <body>
-  
+<body>
   <header class="topo">
-    <h1>🐾 PetVit</h1>
+    <div class="brand">
+      <span>🐾</span>
+      <strong>PetVit</strong>
+    </div>
+
+    <nav class="menu">
+      <a href="#inicio">Início</a>
+      <a href="#pets">Pets</a>
+      <a href="#cadastro">Cadastro</a>
+      <a href="#sugestoes">Sugestões</a>
+      <a href="#contato">Contato</a>
+    </nav>
   </header>
- 
-<main>
-  <section class="intro">
-    <h2>Sobre o site</h2>
-      <p>
-        Nesse site você pode adotar animais e comprar produtos para o seu pet!
-      </p>
+
+  <main>
+    <section id="inicio" class="hero">
+      <div>
+        <h1>Bem-vindo ao PetVit</h1>
+        <p>
+          Aqui você encontra pets para adoção, pode enviar sugestões e fazer seu cadastro
+          de forma simples, bonita e interativa.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn" href="#pets">Ver pets</a>
+          <a class="btn btn-sec" href="#cadastro">Quero adotar</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h2>Resumo do sistema</h2>
+        <p>Pets disponíveis: <strong id="qtdPets">0</strong></p>
+        <p>Solicitações salvas: <strong id="qtdSolicitacoes">0</strong></p>
+        <p>Tempo de resposta: <strong>rápido</strong></p>
+      </div>
     </section>
 
-    <section>
-      <h2>Pets para Adoção</h2>
+    <section id="pets" class="section">
+      <h2>Pets para adoção</h2>
+      <p>Use a busca e os filtros para encontrar o pet ideal.</p>
 
-<div class="cards">
+      <div class="filtros">
+        <input type="text" id="searchPets" placeholder="Pesquisar por nome ou raça..." />
 
-    <div class="card">
-      <img src="cavachon.jpg" alt="Cachorro">
-      <h3>Derick</h3>
-      <p>2 anos</p>
-      <p>Raça: Cavachon</p>
-      <button>Adotar</button>
-    </div>
+        <div class="filter-buttons">
+          <button type="button" class="filter-btn active" data-filter="todos">Todos</button>
+          <button type="button" class="filter-btn" data-filter="cachorro">Cachorros</button>
+          <button type="button" class="filter-btn" data-filter="gato">Gatos</button>
+          <button type="button" class="filter-btn" data-filter="outro">Outros</button>
+        </div>
+      </div>
 
-    <div class="card">
-      <img src="gatopreto.jfif" alt="Gato">
-      <h3>Millie</h3>
-      <p>3 anos</p>
-      <p>Raça: Gato doméstico</p>
-      <button>Adotar</button>
-    </div>
+      <div class="cards" id="petsGrid">
+        <article class="pet-card" data-type="cachorro" data-name="Derick" data-breed="Labrador Retriever">
+          <div class="pet-avatar cachorro">🐶</div>
+          <h3>Derick</h3>
+          <p><strong>Idade:</strong> 14 anos</p>
+          <p><strong>Raça:</strong> Labrador Retriever</p>
+          <button type="button" class="adopt-btn" data-pet="Derick">Quero adotar</button>
+        </article>
 
-    <div class="card">
-      <img src="caramelo.jfif" alt="Cachorro">
-      <h3>Rex</h3>
-      <p>1 ano</p>
-      <p>Raça: Vira-lata</p>
-      <button>Adotar</button>
-    </div>
-  </div>
-</section>
+        <article class="pet-card" data-type="gato" data-name="Casca" data-breed="Doméstico de pelo curto">
+          <div class="pet-avatar gato">🐱</div>
+          <h3>Casca</h3>
+          <p><strong>Idade:</strong> 3 anos</p>
+          <p><strong>Raça:</strong> Doméstico de pelo curto</p>
+          <button type="button" class="adopt-btn" data-pet="Casca">Quero adotar</button>
+        </article>
 
-<section class="acoes">
-      <h2>Ações</h2>
-      <button>Mais Pets</button>
-      <button>Comprar Produtos</button>
+        <article class="pet-card" data-type="cachorro" data-name="Griffith" data-breed="Cavachon">
+          <div class="pet-avatar cachorro">🐕</div>
+          <h3>Griffith</h3>
+          <p><strong>Idade:</strong> 6 anos</p>
+          <p><strong>Raça:</strong> Cavachon</p>
+          <button type="button" class="adopt-btn" data-pet="Griffith">Quero adotar</button>
+        </article>
+
+        <article class="pet-card" data-type="outro" data-name="Nina" data-breed="Coelho anão">
+          <div class="pet-avatar outro">🐰</div>
+          <h3>Nina</h3>
+          <p><strong>Idade:</strong> 2 anos</p>
+          <p><strong>Raça:</strong> Coelho anão</p>
+          <button type="button" class="adopt-btn" data-pet="Nina">Quero adotar</button>
+        </article>
+      </div>
     </section>
 
-    </main>
-  </body>
+    <section id="cadastro" class="section">
+      <h2>Cadastro para adoção</h2>
+      <p>Preencha o formulário para enviar sua solicitação.</p>
+
+      <form id="adoptionForm" class="form-card" novalidate>
+        <div class="field">
+          <label for="nomeAdocao">Nome completo</label>
+          <input type="text" id="nomeAdocao" placeholder="Seu nome" />
+          <small class="error" id="erroNomeAdocao"></small>
+        </div>
+
+        <div class="field">
+          <label for="emailAdocao">E-mail</label>
+          <input type="email" id="emailAdocao" placeholder="seuemail@exemplo.com" />
+          <small class="error" id="erroEmailAdocao"></small>
+        </div>
+
+        <div class="field">
+          <label for="telefoneAdocao">Telefone</label>
+          <input type="tel" id="telefoneAdocao" placeholder="(11) 99999-9999" />
+          <small class="error" id="erroTelefoneAdocao"></small>
+        </div>
+
+        <div class="field">
+          <label for="petEscolhido">Pet escolhido</label>
+          <select id="petEscolhido">
+            <option value="">Selecione um pet</option>
+            <option value="Derick">Derick</option>
+            <option value="Casca">Casca</option>
+            <option value="Griffith">Griffith</option>
+            <option value="Nina">Nina</option>
+          </select>
+          <small class="error" id="erroPetEscolhido"></small>
+        </div>
+
+        <div class="field">
+          <label for="motivoAdocao">Por que deseja adotar?</label>
+          <textarea id="motivoAdocao" rows="4" placeholder="Conte sua motivação..."></textarea>
+          <small class="error" id="erroMotivoAdocao"></small>
+        </div>
+
+        <button type="submit" class="btn">Enviar cadastro</button>
+        <p class="mensagem" id="msgAdocao"></p>
+      </form>
+    </section>
+
+    <section id="sugestoes" class="section">
+      <h2>Sugestões</h2>
+      <p>Envie ideias para melhorar o PetVit.</p>
+
+      <form id="suggestionForm" class="form-card" novalidate>
+        <div class="field">
+          <label for="nomeSugestao">Nome</label>
+          <input type="text" id="nomeSugestao" placeholder="Seu nome" />
+          <small class="error" id="erroNomeSugestao"></small>
+        </div>
+
+        <div class="field">
+          <label for="emailSugestao">E-mail</label>
+          <input type="email" id="emailSugestao" placeholder="seuemail@exemplo.com" />
+          <small class="error" id="erroEmailSugestao"></small>
+        </div>
+
+        <div class="field">
+          <label for="textoSugestao">Sua sugestão</label>
+          <textarea id="textoSugestao" rows="5" maxlength="200" placeholder="Escreva sua sugestão..."></textarea>
+          <small class="contador"><span id="contadorSugestao">0</span>/200 caracteres</small>
+          <small class="error" id="erroTextoSugestao"></small>
+        </div>
+
+        <button type="submit" class="btn">Enviar sugestão</button>
+        <p class="mensagem" id="msgSugestao"></p>
+      </form>
+    </section>
+
+    <section id="contato" class="section">
+      <h2>Contato</h2>
+      <p>Formulário de contato rápido.</p>
+
+      <form id="contactForm" class="form-card" novalidate>
+        <div class="field">
+          <label for="nomeContato">Nome</label>
+          <input type="text" id="nomeContato" placeholder="Seu nome" />
+          <small class="error" id="erroNomeContato"></small>
+        </div>
+
+        <div class="field">
+          <label for="assuntoContato">Assunto</label>
+          <select id="assuntoContato">
+            <option value="">Selecione um assunto</option>
+            <option value="Dúvidas">Dúvidas</option>
+            <option value="Parcerias">Parcerias</option>
+            <option value="Problemas no site">Problemas no site</option>
+          </select>
+          <small class="error" id="erroAssuntoContato"></small>
+        </div>
+
+        <div class="field">
+          <label for="mensagemContato">Mensagem</label>
+          <textarea id="mensagemContato" rows="5" placeholder="Escreva sua mensagem..."></textarea>
+          <small class="error" id="erroMensagemContato"></small>
+        </div>
+
+        <button type="submit" class="btn btn-sec">Enviar contato</button>
+        <p class="mensagem" id="msgContato"></p>
+      </form>
+    </section>
+
+    <section id="solicitacoes" class="section">
+      <h2>Últimas solicitações salvas</h2>
+      <p>Esses dados ficam salvos no navegador, simulando um sistema real.</p>
+      <div id="requestsList" class="requests"></div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <p>PetVit © 2026</p>
+  </footer>
+</body>
 </html>
