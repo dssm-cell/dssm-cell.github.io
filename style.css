@@ -17,6 +17,11 @@ html {
   scroll-behavior: smooth;
 }
 
+.logo-principal {
+    height: 70px;
+    width: auto;
+}
+
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
